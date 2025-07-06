@@ -1,4 +1,4 @@
-package naukri_profile_automation;
+package testcases;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -8,19 +8,21 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import utility.BaseClass;
-
-public class UpdateResume extends BaseClass {
+public class UpdateResume {
 
     @Test
     public void uploadResumeToNaukri() throws InterruptedException, URISyntaxException {
 
+        WebDriver driver = new ChromeDriver();
         driver.get("https://www.naukri.com/");
+        driver.manage().window().maximize();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -82,7 +84,7 @@ public class UpdateResume extends BaseClass {
         WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
 
         URL resourceUrl = UpdateResume.class.getClassLoader()
-                .getResource("InputTestData/Shubham_Puri_TestAutomationEngineer_Resume.pdf");
+                .getResource("Shubham_Puri_TestAutomationEngineer_Resume.pdf");
 
         if (resourceUrl == null) {
             throw new RuntimeException("Resume file not found in test resources.");
@@ -98,7 +100,7 @@ public class UpdateResume extends BaseClass {
         System.out.println("✅ sendKeys called on file input.");
         System.out.println("✅ Resume uploaded successfully to Naukri.");
 
-        // driver.quit();
+         driver.quit();
 
     }
 }
