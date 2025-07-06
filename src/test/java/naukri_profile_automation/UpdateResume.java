@@ -16,68 +16,71 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UpdateResume {
 
-	public static void main(String[] args) throws InterruptedException, URISyntaxException {
+    public static void main(String[] args) throws InterruptedException, URISyntaxException {
 
-		WebDriver driver = new ChromeDriver();
-		driver.get("https://www.naukri.com/");
-		driver.manage().window().maximize();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.naukri.com/");
+        driver.manage().window().maximize();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		try {
+        try {
 
-			WebElement gotItButton = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//div[@class='acceptance-btn']//span[normalize-space()='Got it']")));
+            WebElement gotItButton = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//div[@class='acceptance-btn']//span[normalize-space()='Got it']")));
 
-			// Scroll into view and click using JavaScript
-			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gotItButton);
-			js.executeScript("arguments[0].click();", gotItButton);
+            // Scroll into view and click using JavaScript
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gotItButton);
+            js.executeScript("arguments[0].click();", gotItButton);
 
-			System.out.println("Cookie banner dismissed.");
+            System.out.println("Cookie banner dismissed.");
 
-		} catch (TimeoutException e) {
-			System.out.println("Cookie banner not found or already dismissed.");
-		}
+        } catch (TimeoutException e) {
+            System.out.println("Cookie banner not found or already dismissed.");
+        }
 
-		driver.findElement(By.xpath("//a[normalize-space()='Login']")).click();
+        driver.findElement(By.xpath("//a[normalize-space()='Login']")).click();
 
-		WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(
-				By.xpath("//input[@type='text' and contains(@placeholder, 'Enter your active Email ID / Username')]")));
-		emailInput.sendKeys("spuri4867@gmail.com");
+        String username = System.getenv("NAUKRI_EMAIL");  //spuri4867@gmail.com
+        String password = System.getenv("NAUKRI_PASSWORD");
+
+        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//input[@type='text' and contains(@placeholder, 'Enter your active Email ID / Username')]")));
+        emailInput.sendKeys(username);
 
 // driver.findElement(By.xpath("//input[@placeholder='Enter your active Email ID / Username']")).sendKeys("spuri4867@gmail.com");
-		driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys("Shubham@29051");
-		driver.findElement(By.xpath("//button[@type='submit']")).click();
+        driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys(password);
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='View profile']")))
-				.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='View profile']")))
+                .click();
 
-		WebElement updateResume = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//input[@type='button' and @value='Update resume']")));
+        WebElement updateResume = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//input[@type='button' and @value='Update resume']")));
 
-		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", updateResume);
-		js.executeScript("arguments[0].click();", updateResume);
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", updateResume);
+        js.executeScript("arguments[0].click();", updateResume);
 
-		Thread.sleep(1000);
+        Thread.sleep(1000);
 
-		WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
+        WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
 
-		URL resourceUrl = UpdateResume.class.getClassLoader()
-				.getResource("Shubham_Puri_TestAutomationEngineer_Resume.pdf");
+        URL resourceUrl = UpdateResume.class.getClassLoader()
+                .getResource("Shubham_Puri_TestAutomationEngineer_Resume.pdf");
 
-		if (resourceUrl == null) {
-			throw new RuntimeException("Resume file not found in test resources.");
-		}
+        if (resourceUrl == null) {
+            throw new RuntimeException("Resume file not found in test resources.");
+        }
 
-		File resumeFile = new File(resourceUrl.toURI());
-		fileInput.sendKeys(resumeFile.getAbsolutePath());
+        File resumeFile = new File(resourceUrl.toURI());
+        fileInput.sendKeys(resumeFile.getAbsolutePath());
 
-		// String filePath = System.getProperty("user.home") +
-		// "\\Desktop\\Shubham_Puri_TestAutomationEngineer_Resume.pdf";
-		// fileInput.sendKeys(filePath);
-		System.out.println("Clicked on 'Update resume' and uploaded the file.");
+        // String filePath = System.getProperty("user.home") +
+        // "\\Desktop\\Shubham_Puri_TestAutomationEngineer_Resume.pdf";
+        // fileInput.sendKeys(filePath);
+        System.out.println("✅ Resume uploaded successfully to Naukri.");
 
-		driver.quit();
+        driver.quit();
 
-	}
+    }
 }
