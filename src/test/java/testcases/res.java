@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-public class UpdateResume {
+public class res {
 
     @Test
     public void uploadResumeToNaukri() throws InterruptedException, URISyntaxException {
@@ -83,7 +83,7 @@ public class UpdateResume {
 
         WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
 
-        URL resourceUrl = UpdateResume.class.getClassLoader()
+        URL resourceUrl = res.class.getClassLoader()
                 .getResource("Shubham_Puri_TestAutomationEngineer_Resume.pdf");
 
         if (resourceUrl == null) {
@@ -100,7 +100,7 @@ public class UpdateResume {
         System.out.println("✅ sendKeys called on file input.");
         System.out.println("✅ Resume uploaded successfully to Naukri.");
 
-         driver.quit();
+        driver.quit();
 
     }
 }

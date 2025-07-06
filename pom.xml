@@ -21,6 +21,19 @@
 					</includes>
 				</configuration>
 			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile> <!-- Ensure path
+						is correct -->
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
