@@ -1,0 +1,6 @@
+2025-07-06 23:34:01 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-06 23:34:01 INFO  [main] res - Launching browser and initializing WebDriver...
+2025-07-06 23:36:24 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-06 23:36:24 INFO  [main] res - Launching browser and initializing WebDriver...
+2025-07-06 23:36:28 INFO  [main] res - Closed browser and WebDriver.
+2025-07-06 23:36:28 INFO  [main] res - ===== ENDING TEST: res.uploadResumeToNaukri =====

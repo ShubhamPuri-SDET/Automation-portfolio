@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="naukri_profile_automation.UpdateResume">
+      <class name="testcases.res">
         <methods>
+          <include name="setUp"/>
           <include name="uploadResumeToNaukri"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- naukri_profile_automation.UpdateResume -->
+      </class> <!-- testcases.res -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

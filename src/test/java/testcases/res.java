@@ -5,102 +5,96 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.Duration;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+import utility.*;
 
-public class res {
+public class res extends BaseClass {
 
-    @Test
-    public void uploadResumeToNaukri() throws InterruptedException, URISyntaxException {
+	@Test
+	public void uploadResumeToNaukri() throws InterruptedException, URISyntaxException {
 
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://www.naukri.com/");
-        driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+		driver.get("https://www.naukri.com/");
+		driver.manage().window().maximize();
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        try {
+		try {
 
-            WebElement gotItButton = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//div[@class='acceptance-btn']//span[normalize-space()='Got it']")));
+			WebElement gotItButton = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//div[@class='acceptance-btn']//span[normalize-space()='Got it']")));
 
-            // Scroll into view and click using JavaScript
-            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gotItButton);
-            js.executeScript("arguments[0].click();", gotItButton);
+			// Scroll into view and click using JavaScript
+			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", gotItButton);
+			js.executeScript("arguments[0].click();", gotItButton);
 
-            System.out.println("Cookie banner dismissed.");
+			System.out.println("Cookie banner dismissed.");
 
-        } catch (TimeoutException e) {
-            System.out.println("Cookie banner not found or already dismissed.");
-        }
+		} catch (TimeoutException e) {
+			System.out.println("Cookie banner not found or already dismissed.");
+		}
 
-        driver.findElement(By.xpath("//a[normalize-space()='Login']")).click();
+		driver.findElement(By.xpath("//a[normalize-space()='Login']")).click();
 
-        String username = "spuri4867@gmail.com";//System.getenv("NAUKRI_EMAIL");
-        String password = "Shubham@29051"; //System.getenv("NAUKRI_PASSWORD");
+		String username = "spuri4867@gmail.com";// System.getenv("NAUKRI_EMAIL");
+		String password = "Shubham@29051"; // System.getenv("NAUKRI_PASSWORD");
 
-        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@type='text' and contains(@placeholder, 'Enter your active Email ID / Username')]")));
-        emailInput.sendKeys(username);
+		WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(
+				By.xpath("//input[@type='text' and contains(@placeholder, 'Enter your active Email ID / Username')]")));
+		emailInput.sendKeys(username);
 
 // driver.findElement(By.xpath("//input[@placeholder='Enter your active Email ID / Username']")).sendKeys("spuri4867@gmail.com");
-        driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys(password);
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+		driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys(password);
+		driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        try {
+		try {
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='View profile']")))
-                    .click();
-            System.out.println("✔️ 'View profile' link clicked.");
-        } catch (TimeoutException e) {
-            System.out.println("⚠️ 'View profile' not found, trying 'Complete profile'...");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='View profile']")))
+					.click();
+			System.out.println("✔️ 'View profile' link clicked.");
+		} catch (TimeoutException e) {
+			System.out.println("⚠️ 'View profile' not found, trying 'Complete profile'...");
 
-            try {
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), 'Complete')]")))
-                        .click();
-                System.out.println("✔️ 'Complete profile' link clicked.");
-            } catch (TimeoutException ex) {
-                System.out.println("❌ Neither 'View profile' nor 'Complete profile' link found.");
-                driver.quit(); // Optionally exit if both fail
-                return;
-            }
-        }
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), 'Complete')]")))
+						.click();
+				System.out.println("✔️ 'Complete profile' link clicked.");
+			} catch (TimeoutException ex) {
+				System.out.println("❌ Neither 'View profile' nor 'Complete profile' link found.");
+				driver.quit(); // Optionally exit if both fail
+				return;
+			}
+		}
 
-        WebElement updateResume = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//input[@type='button' and @value='Update resume']")));
+		WebElement updateResume = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//input[@type='button' and @value='Update resume']")));
 
-        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", updateResume);
-        js.executeScript("arguments[0].click();", updateResume);
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", updateResume);
+		js.executeScript("arguments[0].click();", updateResume);
 
-        Thread.sleep(1000);
+		Thread.sleep(1000);
 
-        WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
+		WebElement fileInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("attachCV")));
 
-        URL resourceUrl = res.class.getClassLoader()
-                .getResource("Shubham_Puri_TestAutomationEngineer_Resume.pdf");
+		URL resourceUrl = res.class.getClassLoader().getResource("Shubham_Puri_TestAutomationEngineer_Resume.pdf");
 
-        if (resourceUrl == null) {
-            throw new RuntimeException("Resume file not found in test resources.");
-        }
+		if (resourceUrl == null) {
+			throw new RuntimeException("Resume file not found in test resources.");
+		}
 
-        File resumeFile = new File(resourceUrl.toURI());
+		File resumeFile = new File(resourceUrl.toURI());
 
-        // String filePath = System.getProperty("user.home") +
-        // "\\Desktop\\Shubham_Puri_TestAutomationEngineer_Resume.pdf";
-        // fileInput.sendKeys(filePath);
-        System.out.println("Uploading file: " + resumeFile.getAbsolutePath());
-        fileInput.sendKeys(resumeFile.getAbsolutePath());
-        System.out.println("✅ sendKeys called on file input.");
-        System.out.println("✅ Resume uploaded successfully to Naukri.");
+		// String filePath = System.getProperty("user.home") +
+		// "\\Desktop\\Shubham_Puri_TestAutomationEngineer_Resume.pdf";
+		// fileInput.sendKeys(filePath);
+		System.out.println("Uploading file: " + resumeFile.getAbsolutePath());
+		fileInput.sendKeys(resumeFile.getAbsolutePath());
+		System.out.println("✅ sendKeys called on file input.");
+		System.out.println("✅ Resume uploaded successfully to Naukri.");
 
-        driver.quit();
+		driver.quit();
 
-    }
+	}
 }
