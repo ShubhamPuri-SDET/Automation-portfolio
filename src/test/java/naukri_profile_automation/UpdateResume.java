@@ -38,11 +38,11 @@ public class UpdateResume extends BaseClass {
         } catch (TimeoutException e) {
             System.out.println("Cookie banner not found or already dismissed.");
         }
-
+Thread.sleep(5000);
 
         WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(
     By.xpath("//div[contains(@class,'nI-gNb-log-reg')]//a[@id='login_Layer' or @title='Jobseeker Login' or contains(@href, 'nLogin/Login') or normalize-space()='Login']")));
-
+Thread.sleep(5000);
 loginBtn.click();
 
         String username = System.getenv("NAUKRI_EMAIL"); //"spuri4867@gmail.com";
