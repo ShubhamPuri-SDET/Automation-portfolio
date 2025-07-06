@@ -39,8 +39,11 @@ public class UpdateResume extends BaseClass {
             System.out.println("Cookie banner not found or already dismissed.");
         }
 
-       
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='login_Layer' or @title='Jobseeker Login' or contains(@href, 'nLogin/Login') or normalize-space()='Login']"))).click();
+
+        WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(
+    By.xpath("//div[contains(@class,'nI-gNb-log-reg')]//a[@id='login_Layer' or @title='Jobseeker Login' or contains(@href, 'nLogin/Login') or normalize-space()='Login']")));
+
+loginBtn.click();
 
         String username = System.getenv("NAUKRI_EMAIL"); //"spuri4867@gmail.com";
         String password = System.getenv("NAUKRI_PASSWORD"); //"Shubham@29051"; 
