@@ -7,6 +7,23 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>naukri-profile-automation</name>
 	<description>naukri-profile-automation</description>
+	
+	<build>
+    <plugins>
+        <!-- Surefire plugin to run TestNG -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+            <configuration>
+                <includes>
+                    <include>**/UpdateResume.java</include>
+                </includes>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
 	<dependencies>
 		<!--https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>

@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        NAUKRI_EMAIL = credentials('naukri-email')     // Jenkins credential ID
-        NAUKRI_PASSWORD = credentials('naukri-password')
+        NAUKRI_EMAIL = credentials('naukri-email')       // Jenkins Credentials ID
+        NAUKRI_PASSWORD = credentials('naukri-password') // Jenkins Credentials ID
     }
 
     stages {
@@ -15,14 +15,14 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Compiling Java classes...'
+                echo '🛠️ Building project...'
                 sh 'mvn clean compile'
             }
         }
 
-        stage('Test - Upload Resume') {
+        stage('Run Resume Upload Automation') {
             steps {
-                echo 'Running resume upload automation...'
+                echo '🚀 Running resume upload test...'
                 sh 'mvn test'
             }
         }
@@ -30,10 +30,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Resume upload job completed successfully!'
+            echo '✅ Resume uploaded successfully via automation.'
         }
         failure {
-            echo '❌ Job failed! Check the console output for details.'
+            echo '❌ Automation failed. Check console logs for errors.'
         }
     }
 }
