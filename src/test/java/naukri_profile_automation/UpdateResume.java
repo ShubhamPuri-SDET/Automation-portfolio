@@ -41,8 +41,8 @@ public class UpdateResume extends BaseClass {
 
         driver.findElement(By.xpath("//a[normalize-space()='Login']")).click();
 
-        String username = "spuri4867@gmail.com";//System.getenv("NAUKRI_EMAIL");
-        String password = "Shubham@29051"; //System.getenv("NAUKRI_PASSWORD");
+        String username = System.getenv("NAUKRI_EMAIL"); //"spuri4867@gmail.com";
+        String password = System.getenv("NAUKRI_PASSWORD"); //"Shubham@29051"; 
 
         WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@type='text' and contains(@placeholder, 'Enter your active Email ID / Username')]")));
@@ -99,6 +99,5 @@ public class UpdateResume extends BaseClass {
         System.out.println("✅ Resume uploaded successfully to Naukri.");
 
         // driver.quit();
-
     }
 }
