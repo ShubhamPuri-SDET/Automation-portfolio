@@ -54,8 +54,24 @@ public class UpdateResume {
         driver.findElement(By.xpath("//input[@placeholder='Enter your password']")).sendKeys(password);
         driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='View profile']")))
-                .click();
+        try {
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[normalize-space()='View profile']")))
+                    .click();
+            System.out.println("✔️ 'View profile' link clicked.");
+        } catch (TimeoutException e) {
+            System.out.println("⚠️ 'View profile' not found, trying 'Complete profile'...");
+
+            try {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), 'Complete')]")))
+                        .click();
+                System.out.println("✔️ 'Complete profile' link clicked.");
+            } catch (TimeoutException ex) {
+                System.out.println("❌ Neither 'View profile' nor 'Complete profile' link found.");
+                driver.quit(); // Optionally exit if both fail
+                return;
+            }
+        }
 
         WebElement updateResume = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//input[@type='button' and @value='Update resume']")));
