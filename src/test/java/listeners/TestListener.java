@@ -27,11 +27,27 @@ public class TestListener implements ITestListener {
 
 		WebDriver driver = DriverFactory.getDriver();
 
-		if (driver != null) {
+		if (driver == null) {
+			System.err.println("Could not get WebDriver from test class");
+			return;
+		}
+
+		System.out.println("❌ Test Failed: " + result.getName());
+
+		// Check if it's the final retry
+		Object retryCountObj = result.getAttribute("retryCount");
+		Object maxRetryObj = result.getAttribute("maxRetry");
+
+		int retryCount = retryCountObj instanceof Integer ? (int) retryCountObj : 0;
+		int maxRetry = maxRetryObj instanceof Integer ? (int) maxRetryObj : 0;
+
+		if (retryCount >= maxRetry) {
+			// Take screenshot only on final failure
 			String className = result.getTestClass().getRealClass().getSimpleName();
 			ScreenshotUtil.takeScreenshot(driver, className);
+			System.out.println("📸 Screenshot taken on final failure.");
 		} else {
-			System.err.println("Could not get WebDriver from test class");
+			System.out.println("🔁 Skipping screenshot – retrying test again.");
 		}
 	}
 

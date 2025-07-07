@@ -2,6 +2,7 @@ package utility;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
+import java.util.Locale;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,69 +17,56 @@ import org.testng.annotations.BeforeMethod;
 
 import drivers.DriverFactory;
 
-
 public class BaseClass {
     protected WebDriver driver;
     protected Logger logger = LoggingUtil.getLogger(getClass());
-    
-    //******Webdriver Teardown methods********
 
     @BeforeMethod
     public void setUp(Method method) {
-
-        // Get test class and method names
         String className = method.getDeclaringClass().getSimpleName();
         String methodName = method.getName();
-
-        // Setup per-test logging context
         MDC.put("testName", className + "_" + methodName);
         logger = LoggerFactory.getLogger(className);
 
         logger.info("===== STARTING TEST: {}.{} =====", className, methodName);
-        logger.info("Launching browser and initializing WebDriver...");
 
-        // Initialize WebDriver from a central DriverFactory
-        driver = DriverFactory.initializeDriver();
+        String browser = ConfigReader.getProperty("browser", "chrome").toLowerCase(Locale.ROOT);
+        boolean headless = Boolean.parseBoolean(ConfigReader.getProperty("headless", "false"));
+
+        logger.info("Launching browser: {} | Headless: {}", browser, headless);
+
+        driver = DriverFactory.initializeDriver(browser, headless);
     }
-
     @AfterMethod
     public void tearDown(Method method) {
-    	 String className = method.getDeclaringClass().getSimpleName();
-         String methodName = method.getName();
+        String className = method.getDeclaringClass().getSimpleName();
+        String methodName = method.getName();
 
-         if (driver != null) {
-             driver.quit();
-             logger.info("Closed browser and WebDriver.");
-         }
+        if (driver != null) {
+            driver.quit();
+            logger.info("Closed browser and WebDriver.");
+        }
 
-         logger.info("===== ENDING TEST: {}.{} =====", className, methodName);
+        logger.info("===== ENDING TEST: {}.{} =====", className, methodName);
+        MDC.clear();
+    }
 
-         // Clear MDC to avoid memory leaks or cross-test log contamination
-         MDC.clear();
-     }
-  
     public WebDriver getDriver() {
         return driver;
     }
 
-    
-    //*****wait methods***********
-    
-    // Reusable Explicit Wait: Wait for visibility
+    // Wait methods
     public WebElement waitForVisibility(By locator, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    // Reusable Explicit Wait: Wait for clickability
     public WebElement waitForElementClickable(By locator, int timeoutSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    // You can also add a default timeout overload
     public WebElement waitForElementClickable(By locator) {
-        return waitForElementClickable(locator, 10); // default 10 seconds
+        return waitForElementClickable(locator, 10);
     }
-
 }

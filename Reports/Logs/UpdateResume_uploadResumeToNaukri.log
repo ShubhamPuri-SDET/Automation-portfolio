@@ -2,3 +2,27 @@
 2025-07-06 22:54:27 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
 2025-07-06 22:55:07 INFO  [main] UpdateResume - Closed browser and WebDriver.
 2025-07-06 22:55:07 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:12:06 INFO  [main] UpdateResume - ===== STARTING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:12:06 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
+2025-07-07 16:12:26 INFO  [main] UpdateResume - Closed browser and WebDriver.
+2025-07-07 16:12:26 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:12:35 INFO  [main] UpdateResume - ===== STARTING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:12:35 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
+2025-07-07 16:13:02 INFO  [main] UpdateResume - Closed browser and WebDriver.
+2025-07-07 16:13:02 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:13:24 INFO  [main] UpdateResume - ===== STARTING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:13:24 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
+2025-07-07 16:13:32 INFO  [main] UpdateResume - Closed browser and WebDriver.
+2025-07-07 16:13:32 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:14:09 INFO  [main] UpdateResume - ===== STARTING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:14:09 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
+2025-07-07 16:14:24 INFO  [main] UpdateResume - Closed browser and WebDriver.
+2025-07-07 16:14:24 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:15:03 INFO  [main] UpdateResume - ===== STARTING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:15:03 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
+2025-07-07 16:15:17 INFO  [main] UpdateResume - Closed browser and WebDriver.
+2025-07-07 16:15:17 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:18:33 INFO  [main] UpdateResume - ===== STARTING TEST: UpdateResume.uploadResumeToNaukri =====
+2025-07-07 16:18:33 INFO  [main] UpdateResume - Launching browser and initializing WebDriver...
+2025-07-07 16:18:46 INFO  [main] UpdateResume - Closed browser and WebDriver.
+2025-07-07 16:18:46 INFO  [main] UpdateResume - ===== ENDING TEST: UpdateResume.uploadResumeToNaukri =====

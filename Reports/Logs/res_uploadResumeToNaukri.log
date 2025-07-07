@@ -4,3 +4,29 @@
 2025-07-06 23:36:24 INFO  [main] res - Launching browser and initializing WebDriver...
 2025-07-06 23:36:28 INFO  [main] res - Closed browser and WebDriver.
 2025-07-06 23:36:28 INFO  [main] res - ===== ENDING TEST: res.uploadResumeToNaukri =====
+2025-07-07 16:45:20 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-07 16:45:20 INFO  [main] res - Launching browser: firefox		# options: chrome, firefox, edge | Headless: false
+2025-07-07 16:45:20 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@5dcd8c7a: 107 ms
+2025-07-07 16:45:20 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@2dc995f4: 19 ms
+2025-07-07 16:45:20 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@4758820d: 20 ms
+2025-07-07 16:45:20 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@115667d: 15 ms
+2025-07-07 16:45:20 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@495fac5f: 11 ms
+2025-07-07 16:45:20 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@76012793: 0 ms
+2025-07-07 16:46:54 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-07 16:46:54 INFO  [main] res - Launching browser: firefox		 | Headless: false
+2025-07-07 16:46:55 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.jq.Main@5dcd8c7a: 99 ms
+2025-07-07 16:46:55 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.FailedReporter@2dc995f4: 19 ms
+2025-07-07 16:46:55 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.XMLReporter@4758820d: 14 ms
+2025-07-07 16:46:55 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.EmailableReporter2@115667d: 13 ms
+2025-07-07 16:46:55 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@495fac5f: 12 ms
+2025-07-07 16:46:55 INFO  [main] org.testng.internal.Utils - [TestNG] Time taken by org.testng.internal.ExitCodeListener@76012793: 0 ms
+2025-07-07 17:03:04 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-07 17:03:04 INFO  [main] res - Launching browser: firefox | Headless: false
+2025-07-07 17:03:26 INFO  [main] res - Closed browser and WebDriver.
+2025-07-07 17:03:26 INFO  [main] res - ===== ENDING TEST: res.uploadResumeToNaukri =====
+2025-07-07 17:08:04 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-07 17:08:04 INFO  [main] res - Launching browser: firefox | Headless: false
+2025-07-07 17:08:28 INFO  [main] res - ===== STARTING TEST: res.uploadResumeToNaukri =====
+2025-07-07 17:08:28 INFO  [main] res - Launching browser: edge | Headless: false
+2025-07-07 17:08:47 INFO  [main] res - Closed browser and WebDriver.
+2025-07-07 17:08:47 INFO  [main] res - ===== ENDING TEST: res.uploadResumeToNaukri =====

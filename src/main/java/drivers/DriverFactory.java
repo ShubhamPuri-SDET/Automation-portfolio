@@ -1,47 +1,61 @@
 package drivers;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import utility.*;
-
 import java.time.Duration;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
 public class DriverFactory {
-	private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-	public static WebDriver initializeDriver() {
-		if (driver.get() == null) {
+    public static WebDriver initializeDriver(String browser, boolean headless) {
+        System.out.println("Launching browser: " + browser + " | Headless: " + headless);
 
-			ChromeOptions options = new ChromeOptions();
+        WebDriver newDriver;
 
-			String headless = ConfigReader.get("headless");
-			if ("true".equalsIgnoreCase(headless)) {
-				options.addArguments("--headless=new");
-				options.addArguments("--disable-gpu");
-				options.addArguments("--window-size=1920,1080");
-				options.addArguments("--remote-allow-origins=*");
-			}
+        switch (browser) {
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (headless) chromeOptions.addArguments("--headless=new");
+                newDriver = new ChromeDriver(chromeOptions);
+                break;
 
-			WebDriver newDriver = new ChromeDriver(options);
-			newDriver.manage().window().maximize();
-			newDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			driver.set(newDriver);
-		}
-		return driver.get();
-	}
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (headless) firefoxOptions.addArguments("--headless");
+                newDriver = new FirefoxDriver(firefoxOptions);
+                break;
 
-	public static WebDriver getDriver() {
-		return driver.get();
-	}
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                if (headless) edgeOptions.addArguments("--headless=new");
+                newDriver = new EdgeDriver(edgeOptions);
+                break;
 
-	public static void quitDriver() {
-		if (driver.get() != null) {
-			driver.get().quit();
-			driver.remove();
-		}
-	}
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
 
-	static {
-		LoggingUtil.initializeLogsFolder();  // Ensures logs/ folder exists
-	}
+        newDriver.manage().window().maximize();
+        newDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.set(newDriver);
+        return newDriver;
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    public static void quitDriver() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+    }
 }
+

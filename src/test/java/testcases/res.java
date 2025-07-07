@@ -8,11 +8,14 @@ import java.time.Duration;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utility.*;
 
+@Listeners(listeners.TestListener.class)
 public class res extends BaseClass {
-
+		
+	
 	@Test
 	public void uploadResumeToNaukri() throws InterruptedException, URISyntaxException {
 
